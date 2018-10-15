@@ -13,7 +13,7 @@
 #' @details The returned object contains:
 #' \itemize{
 #' \item The deepTools matrix in the \code{assay} slot.
-#' \item The genomic range informatio in the \code{rowRanges} slot.
+#' \item The genomic range information in the \code{rowRanges} slot.
 #' }
 #'
 #' @examples
@@ -54,12 +54,19 @@
 #' # Usage ----
 #' makeExperimentFromDeeptools(tf)
 makeExperimentFromDeeptools <- function(file) {
-  matrixFile <- gzfile(file)
-  matrixData <- read.table(matrixFile, skip = 1)
-  scoreMatrix <- as.matrix(matrixData[, -c(1:6)])
-  rangeInfo <- with(matrixData, GRanges(seqnames = V1, ranges = IRanges(V2, V3), strand = V6))
-  names(rangeInfo) <- matrixData$V4
-  SummarizedExperiment(
-    assays = list(matrix=scoreMatrix),
-    rowRanges=rangeInfo)
+    # Parse the file
+    matrixFile <- gzfile(file)
+    matrixData <- read.table(matrixFile, skip = 1)
+    # Extract the data matrix
+    scoreMatrix <- as.matrix(matrixData[, -c(1:6)])
+    # Extract the genomic range information
+    rangeInfo <- with(matrixData, GRanges(seqnames = V1, ranges = IRanges(V2, V3), strand = V6))
+    names(rangeInfo) <- matrixData$V4
+    # Prepare the output object
+    se <- SummarizedExperiment(
+        assays = list(matrix=scoreMatrix),
+        rowRanges=rangeInfo)
+    # colnames are meaningless here
+    colnames(se) <- NULL
+    se
 }

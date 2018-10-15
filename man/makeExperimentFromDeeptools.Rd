@@ -19,7 +19,7 @@ Make a SummarizedExperiment object from a deepTools matrix
 The returned object contains:
 \itemize{
 \item The deepTools matrix in the \code{assay} slot.
-\item The genomic range informatio in the \code{rowRanges} slot.
+\item The genomic range information in the \code{rowRanges} slot.
 }
 }
 \examples{

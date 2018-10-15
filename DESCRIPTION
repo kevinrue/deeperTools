@@ -1,16 +1,19 @@
 Package: deeperTools
-Title: What the Package Does (one line, title case)
-Version: 0.0.0.9000
-Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Title: Downstream Processing of DeepTools Analyses
+Version: 0.0.1
+Authors@R: person("Kevin", "Rue-Albrecht", email = "kevin.rue-albrecht@kenedy.ox.ac.uk.com", role = c("aut", "cre"))
+Description: Parses and visualizes file produced by the DeepTools program
+    (https://deeptools.readthedocs.io/en/develop/index.html).
 Depends: R (>= 3.5.0)
 License: GPL-3 + file LICENSE
 Encoding: UTF-8
 LazyData: true
-Suggests: rtracklayer
 RoxygenNote: 6.1.0
 Imports:
     GenomicRanges,
     IRanges,
     SummarizedExperiment,
     utils
+Suggests:
+    rtracklayer,
+    testthat
