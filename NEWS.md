@@ -3,6 +3,7 @@
 * Added function `averageReplicates`.
 * Added function `splitByGeneSet`.
 * Added function `makeMetageneDataFrame`.
+* Added function `windowBreaks`.
 * Added Travis continuous integration.
 * Added Codecov code coverage.
 
