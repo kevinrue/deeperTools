@@ -9,7 +9,7 @@
 #'
 #' @return A \code{SummarizedExperiment} with the averaged assay.
 #' @export
-#' @importFrom SummarizedExperiment assay SummarizedExperiment
+#' @importFrom SummarizedExperiment SummarizedExperiment assay rowRanges
 #'
 #' @examples
 #' # Prepare example data ----
@@ -33,7 +33,7 @@ averageReplicates <- function(list, assay.type="matrix"){
     }
     outAssayList[[assay.type]] <- outMatrix / length(list)
 
-    se <- SummarizedExperiment(assays=outAssayList)
+    se <- SummarizedExperiment(assays=outAssayList, rowRanges=rowRanges(list[[1]]))
     # Transfer the dimnames
     rownames(se) <- rownames(list[[1]])
     colnames(se) <- colnames(list[[1]])
