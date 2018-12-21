@@ -9,6 +9,7 @@
 #' Each item within each sublist is a named gene set (e.g. "upregulated").
 #' Each \code{SummarizedExperiment} stores matrix of histone modification enrichment,
 #' with \code{colnames} set to the numerical value of the center of each window used to compute enrichment.
+#' @param assay.type Name the assay to average between all samples.
 #'
 #' @return A \code{data.frame} with columns \code{c("sample", "geneset", "position")}
 #' @export

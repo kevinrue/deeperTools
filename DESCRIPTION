@@ -18,4 +18,5 @@ Imports:
 Suggests:
     rtracklayer,
     testthat,
-    covr
+    covr,
+    ggplot2

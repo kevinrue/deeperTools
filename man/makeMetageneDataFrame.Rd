@@ -12,6 +12,8 @@ Each item in the top-most list is a named sample (e.g. "replicate1").
 Each item within each sublist is a named gene set (e.g. "upregulated").
 Each \code{SummarizedExperiment} stores matrix of histone modification enrichment,
 with \code{colnames} set to the numerical value of the center of each window used to compute enrichment.}
+
+\item{assay.type}{Name the assay to average between all samples.}
 }
 \value{
 A \code{data.frame} with columns \code{c("sample", "geneset", "position")}
