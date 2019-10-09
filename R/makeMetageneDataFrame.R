@@ -19,6 +19,11 @@
 #' @seealso makeExperimentFromDeeptools
 #'
 #' @examples
+#' # Set plotting environment ----
+#' library(ggplot2)
+#' library(cowplot)
+#' theme_set(theme_cowplot())
+#'
 #' # Prepare example data ----
 #' example(makeExperimentFromDeeptools)
 #'
@@ -37,7 +42,6 @@
 #' # Usage ----
 #' x <- makeMetageneDataFrame(seList)
 #'
-#' require(ggplot2)
 #' ggplot(x, aes(position, metagene, color=geneset)) +
 #'     geom_line(aes(group=interaction(geneset, sample))) +
 #'     geom_point()

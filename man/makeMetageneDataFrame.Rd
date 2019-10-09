@@ -24,6 +24,11 @@ It computes the metagene for each gene set in each sample, and returns
 a \code{data.frame} suitable for \code{ggplot2}.
 }
 \examples{
+# Set plotting environment ----
+library(ggplot2)
+library(cowplot)
+theme_set(theme_cowplot())
+
 # Prepare example data ----
 example(makeExperimentFromDeeptools)
 
@@ -42,7 +47,6 @@ seList <- lapply(seList, splitByGeneSet, genesets=genesets)
 # Usage ----
 x <- makeMetageneDataFrame(seList)
 
-require(ggplot2)
 ggplot(x, aes(position, metagene, color=geneset)) +
     geom_line(aes(group=interaction(geneset, sample))) +
     geom_point()
