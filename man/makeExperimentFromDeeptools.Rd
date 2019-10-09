@@ -60,5 +60,6 @@ close(conn)
 # Usage ----
 
 binCenters <- seq_len(nWindows) - nWindows/2
-makeExperimentFromDeeptools(tf, col.names=binCenters)
+se <- makeExperimentFromDeeptools(tf, col.names=binCenters)
+se
 }

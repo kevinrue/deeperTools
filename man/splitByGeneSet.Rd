@@ -25,5 +25,5 @@ example(makeExperimentFromDeeptools)
 # Usage ----
 
 genesets <- list(set1=c("a"), set2=c("b", "c"))
-sse <- splitByGeneSet(se, genesets)
+splitByGeneSet(se, genesets)
 }
