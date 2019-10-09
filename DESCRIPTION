@@ -20,3 +20,5 @@ Suggests:
     testthat,
     covr,
     ggplot2
+URL: https://github.com/kevinrue/deeperTools, https://kevinrue.github.io/deeperTools
+BugReports: https://github.com/kevinrue/deeperTools/issues
