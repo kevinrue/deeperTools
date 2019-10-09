@@ -46,7 +46,8 @@
 #'
 #' ggplot(x, aes(position, metagene, color=geneset)) +
 #'     geom_line(aes(group=interaction(geneset, sample))) +
-#'     geom_point()
+#'     geom_point() +
+#'     facet_wrap(~sample, ncol=1)
 makeMetageneDataFrame <- function(list, assay.type="matrix"){
     #list: named list (by sample) of named lists (by gene set) of SummarizedExperiment objects
     globalDataFrameList <- list()

@@ -28,6 +28,7 @@ sampleNames <- head(LETTERS, 2)
 binCenters <- seq_len(nWindows) - nWindows/2
 seList <- lapply(sampleNames, function(x){makeExperimentFromDeeptools(tf, col.names=binCenters)})
 names(seList) <- sampleNames
+
 # Usage ----
 averageReplicates(seList)
 }

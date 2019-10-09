@@ -53,7 +53,8 @@
 #' # Usage ----
 #'
 #' binCenters <- seq_len(nWindows) - nWindows/2
-#' makeExperimentFromDeeptools(tf, col.names=binCenters)
+#' se <- makeExperimentFromDeeptools(tf, col.names=binCenters)
+#' se
 makeExperimentFromDeeptools <- function(file, col.names=NULL) {
     # Parse the file
     matrixFile <- gzfile(file)
