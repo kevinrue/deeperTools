@@ -167,7 +167,7 @@ a new single <code>SummarizedExperiment</code> with the averaged assay.</p>
 #&gt; mkExFD+     seqnames=rep("chr1", nRanges),
 #&gt; mkExFD+     ranges=IRanges(seq(1, nRanges), 10+seq(1, nRanges)))
 #&gt; 
-#&gt; mkExFD&gt; names(gr) &lt;- letters[1:3]
+#&gt; mkExFD&gt; names(gr) &lt;- letters[seq_len(nRanges)]
 #&gt; 
 #&gt; mkExFD&gt; # Make a sample matrix
 #&gt; mkExFD&gt; nWindows &lt;- 10
