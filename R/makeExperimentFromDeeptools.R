@@ -24,8 +24,8 @@
 #' }
 #'
 #' @examples
-#' require(rtracklayer)
-#' require(GenomicRanges)
+#' library(rtracklayer)
+#' library(GenomicRanges)
 #'
 #' # Prepare example data ----
 #'
@@ -51,8 +51,9 @@
 #' close(conn)
 #'
 #' # Usage ----
+#'
 #' binCenters <- seq_len(nWindows) - nWindows/2
-#' se <- makeExperimentFromDeeptools(tf, col.names=binCenters)
+#' makeExperimentFromDeeptools(tf, col.names=binCenters)
 makeExperimentFromDeeptools <- function(file, col.names=NULL) {
     # Parse the file
     matrixFile <- gzfile(file)
