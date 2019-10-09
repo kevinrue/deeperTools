@@ -19,7 +19,8 @@
 #' @seealso makeExperimentFromDeeptools
 #'
 #' @examples
-#' # Set plotting environment ----
+#' # Set the plotting environment ----
+#'
 #' library(ggplot2)
 #' library(cowplot)
 #' theme_set(theme_cowplot())
@@ -40,6 +41,7 @@
 #' seList <- lapply(seList, splitByGeneSet, genesets=genesets)
 #'
 #' # Usage ----
+#'
 #' x <- makeMetageneDataFrame(seList)
 #'
 #' ggplot(x, aes(position, metagene, color=geneset)) +
