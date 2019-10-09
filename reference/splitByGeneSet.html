@@ -138,10 +138,11 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Prepare example data ----</span>
+
 <span class='fu'><a href='https://rdrr.io/r/utils/example.html'>example</a></span>(<span class='no'>makeExperimentFromDeeptools</span>)</div><div class='output co'>#&gt; 
-#&gt; mkExFD&gt; require(rtracklayer)
+#&gt; mkExFD&gt; library(rtracklayer)
 #&gt; 
-#&gt; mkExFD&gt; require(GenomicRanges)
+#&gt; mkExFD&gt; library(GenomicRanges)
 #&gt; 
 #&gt; mkExFD&gt; # Prepare example data ----
 #&gt; mkExFD&gt; 
@@ -174,12 +175,43 @@
 #&gt; mkExFD&gt; close(conn)
 #&gt; 
 #&gt; mkExFD&gt; # Usage ----
+#&gt; mkExFD&gt; 
 #&gt; mkExFD&gt; binCenters &lt;- seq_len(nWindows) - nWindows/2
 #&gt; 
-#&gt; mkExFD&gt; se &lt;- makeExperimentFromDeeptools(tf, col.names=binCenters)</div><div class='input'>
+#&gt; mkExFD&gt; se &lt;- makeExperimentFromDeeptools(tf, col.names=binCenters)
+#&gt; 
+#&gt; mkExFD&gt; se
+#&gt; class: RangedSummarizedExperiment 
+#&gt; dim: 3 10 
+#&gt; metadata(0):
+#&gt; assays(1): matrix
+#&gt; rownames(3): a b c
+#&gt; rowData names(0):
+#&gt; colnames(10): -4 -3 ... 4 5
+#&gt; colData names(0):</div><div class='input'>
 <span class='co'># Usage ----</span>
+
 <span class='no'>genesets</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>set1</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"a"</span>), <span class='kw'>set2</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"b"</span>, <span class='st'>"c"</span>))
-<span class='no'>sse</span> <span class='kw'>&lt;-</span> <span class='fu'>splitByGeneSet</span>(<span class='no'>se</span>, <span class='no'>genesets</span>)</div></pre>
+<span class='fu'>splitByGeneSet</span>(<span class='no'>se</span>, <span class='no'>genesets</span>)</div><div class='output co'>#&gt; $set1
+#&gt; class: RangedSummarizedExperiment 
+#&gt; dim: 1 10 
+#&gt; metadata(0):
+#&gt; assays(1): matrix
+#&gt; rownames(1): a
+#&gt; rowData names(0):
+#&gt; colnames(10): -4 -3 ... 4 5
+#&gt; colData names(0):
+#&gt; 
+#&gt; $set2
+#&gt; class: RangedSummarizedExperiment 
+#&gt; dim: 2 10 
+#&gt; metadata(0):
+#&gt; assays(1): matrix
+#&gt; rownames(2): b c
+#&gt; rowData names(0):
+#&gt; colnames(10): -4 -3 ... 4 5
+#&gt; colData names(0):
+#&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

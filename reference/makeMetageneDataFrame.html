@@ -148,7 +148,8 @@ with <code>colnames</code> set to the numerical value of the center of each wind
     <div class='dont-index'><p>makeExperimentFromDeeptools</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Set plotting environment ----</span>
+    <pre class="examples"><div class='input'><span class='co'># Set the plotting environment ----</span>
+
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>ggplot2</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>cowplot</span>)</div><div class='output co'>#&gt; <span class='message'></span>
 #&gt; <span class='message'>********************************************************</span></div><div class='output co'>#&gt; <span class='message'>Note: As of version 1.0.0, cowplot does not change the</span></div><div class='output co'>#&gt; <span class='message'>  default ggplot2 theme anymore. To recover the previous</span></div><div class='output co'>#&gt; <span class='message'>  behavior, execute:</span>
@@ -156,9 +157,9 @@ with <code>colnames</code> set to the numerical value of the center of each wind
 
 <span class='co'># Prepare example data ----</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/example.html'>example</a></span>(<span class='no'>makeExperimentFromDeeptools</span>)</div><div class='output co'>#&gt; 
-#&gt; mkExFD&gt; require(rtracklayer)
+#&gt; mkExFD&gt; library(rtracklayer)
 #&gt; 
-#&gt; mkExFD&gt; require(GenomicRanges)
+#&gt; mkExFD&gt; library(GenomicRanges)
 #&gt; 
 #&gt; mkExFD&gt; # Prepare example data ----
 #&gt; mkExFD&gt; 
@@ -191,9 +192,20 @@ with <code>colnames</code> set to the numerical value of the center of each wind
 #&gt; mkExFD&gt; close(conn)
 #&gt; 
 #&gt; mkExFD&gt; # Usage ----
+#&gt; mkExFD&gt; 
 #&gt; mkExFD&gt; binCenters &lt;- seq_len(nWindows) - nWindows/2
 #&gt; 
-#&gt; mkExFD&gt; se &lt;- makeExperimentFromDeeptools(tf, col.names=binCenters)</div><div class='input'>
+#&gt; mkExFD&gt; se &lt;- makeExperimentFromDeeptools(tf, col.names=binCenters)
+#&gt; 
+#&gt; mkExFD&gt; se
+#&gt; class: RangedSummarizedExperiment 
+#&gt; dim: 3 10 
+#&gt; metadata(0):
+#&gt; assays(1): matrix
+#&gt; rownames(3): a b c
+#&gt; rowData names(0):
+#&gt; colnames(10): -4 -3 ... 4 5
+#&gt; colData names(0):</div><div class='input'>
 <span class='co'># Make a list of samples</span>
 <span class='no'>sampleNames</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>LETTERS</span>, <span class='fl'>2</span>)
 <span class='no'>binCenters</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq_len</a></span>(<span class='no'>nWindows</span>) - <span class='no'>nWindows</span>/<span class='fl'>2</span>
@@ -207,11 +219,13 @@ with <code>colnames</code> set to the numerical value of the center of each wind
 <span class='no'>seList</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span>(<span class='no'>seList</span>, <span class='no'>splitByGeneSet</span>, <span class='kw'>genesets</span><span class='kw'>=</span><span class='no'>genesets</span>)
 
 <span class='co'># Usage ----</span>
+
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>makeMetageneDataFrame</span>(<span class='no'>seList</span>)
 
 <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='no'>x</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='no'>position</span>, <span class='no'>metagene</span>, <span class='kw'>color</span><span class='kw'>=</span><span class='no'>geneset</span>)) +
     <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span>(<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>group</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/interaction.html'>interaction</a></span>(<span class='no'>geneset</span>, <span class='no'>sample</span>))) +
-    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span>()</div><div class='img'><img src='makeMetageneDataFrame-1.png' alt='' width='700' height='433' /></div></pre>
+    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span>() +
+    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/facet_wrap.html'>facet_wrap</a></span>(~<span class='no'>sample</span>, <span class='kw'>ncol</span><span class='kw'>=</span><span class='fl'>1</span>)</div><div class='img'><img src='makeMetageneDataFrame-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
