@@ -14,7 +14,6 @@
 #' @export
 #' @importFrom utils read.table
 #' @importFrom SummarizedExperiment SummarizedExperiment
-#' @importMethodsFrom SummarizedExperiment SummarizedExperiment
 #' @importFrom GenomicRanges GRanges
 #' @importFrom IRanges IRanges
 #'

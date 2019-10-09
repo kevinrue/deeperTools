@@ -19,6 +19,7 @@ Suggests:
     rtracklayer,
     testthat,
     covr,
-    ggplot2
+    ggplot2,
+    cowplot
 URL: https://github.com/kevinrue/deeperTools, https://kevinrue.github.io/deeperTools
 BugReports: https://github.com/kevinrue/deeperTools/issues
