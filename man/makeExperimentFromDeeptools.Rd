@@ -41,7 +41,7 @@ nRanges <- 3
 gr <- GRanges(
     seqnames=rep("chr1", nRanges),
     ranges=IRanges(seq(1, nRanges), 10+seq(1, nRanges)))
-names(gr) <- letters[1:3]
+names(gr) <- letters[seq_len(nRanges)]
 
 # Make a sample matrix
 nWindows <- 10

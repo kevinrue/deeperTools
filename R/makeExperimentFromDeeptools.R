@@ -35,7 +35,7 @@
 #' gr <- GRanges(
 #'     seqnames=rep("chr1", nRanges),
 #'     ranges=IRanges(seq(1, nRanges), 10+seq(1, nRanges)))
-#' names(gr) <- letters[1:3]
+#' names(gr) <- letters[seq_len(nRanges)]
 #'
 #' # Make a sample matrix
 #' nWindows <- 10
@@ -59,7 +59,7 @@ makeExperimentFromDeeptools <- function(file, col.names=NULL) {
     matrixFile <- gzfile(file)
     matrixData <- read.table(matrixFile, skip=1)
     # Extract the data matrix
-    scoreMatrix <- as.matrix(matrixData[, -c(1:6)])
+    scoreMatrix <- as.matrix(matrixData[, -seq_len(6)])
     # Extract the genomic range information
     rangeInfo <- with(matrixData, GRanges(seqnames=V1, ranges=IRanges(V2, V3), strand=V6))
     names(rangeInfo) <- matrixData$V4
