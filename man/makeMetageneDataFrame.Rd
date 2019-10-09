@@ -31,23 +31,16 @@ library(cowplot)
 theme_set(theme_cowplot())
 
 # Prepare example data ----
-example(makeExperimentFromDeeptools)
 
-# Make a list of samples
-sampleNames <- head(LETTERS, 2)
-binCenters <- seq_len(nWindows) - nWindows/2
-seList <- lapply(sampleNames, function(x){
-    makeExperimentFromDeeptools(tf, col.names=binCenters)
-})
-names(seList) <- sampleNames
+se_list <- generateDeeptoolsExperiments(20, 10, head(LETTERS, 3))
 
-# Split each sample into gene subsets
-genesets <- list(set1=c("a"), set2=c("b", "c"))
-seList <- lapply(seList, splitByGeneSet, genesets=genesets)
+# Split each sample into gene subsets ----
+range_sets <- list(set1=c("GR_1"), set2=c("GR_2", "GR_3"))
+se_list_list <- lapply(se_list, splitByGeneSet, range_sets)
 
 # Usage ----
 
-x <- makeMetageneDataFrame(seList)
+x <- makeMetageneDataFrame(se_list_list)
 
 ggplot(x, aes(position, metagene, color=geneset)) +
     geom_line(aes(group=interaction(geneset, sample))) +

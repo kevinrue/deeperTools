@@ -4,7 +4,7 @@ Version: 0.0.3
 Authors@R: person("Kevin", "Rue-Albrecht", email = "kevin.rue-albrecht@kenedy.ox.ac.uk", role = c("aut", "cre"))
 Description: Parses and visualizes file produced by the DeepTools program
     (https://deeptools.readthedocs.io/en/develop/index.html).
-Depends: R (>= 3.5.0)
+Depends: R (>= 3.5.0), SummarizedExperiment
 License: GPL-3 + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -12,7 +12,6 @@ RoxygenNote: 6.1.1
 Imports:
     GenomicRanges,
     IRanges,
-    SummarizedExperiment,
     utils,
     Matrix
 Suggests:
