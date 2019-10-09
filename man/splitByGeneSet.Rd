@@ -19,9 +19,11 @@ Extracts Gene Subsets from a SummarizedExperiment object
 }
 \examples{
 # Prepare example data ----
+
 example(makeExperimentFromDeeptools)
 
 # Usage ----
+
 genesets <- list(set1=c("a"), set2=c("b", "c"))
 sse <- splitByGeneSet(se, genesets)
 }

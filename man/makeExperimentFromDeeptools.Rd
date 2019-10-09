@@ -31,8 +31,8 @@ The returned object contains:
 }
 }
 \examples{
-require(rtracklayer)
-require(GenomicRanges)
+library(rtracklayer)
+library(GenomicRanges)
 
 # Prepare example data ----
 
@@ -58,6 +58,7 @@ write.table(outData, conn, row.names=FALSE, col.names=TRUE)
 close(conn)
 
 # Usage ----
+
 binCenters <- seq_len(nWindows) - nWindows/2
-se <- makeExperimentFromDeeptools(tf, col.names=binCenters)
+makeExperimentFromDeeptools(tf, col.names=binCenters)
 }
