@@ -1,4 +1,4 @@
-#' Make a SummarizedExperiment Object from a deepTools Matrix File
+#' Import a deepTools Matrix File as a SummarizedExperiment Object
 #'
 #' @param file A gzip-compressed matrix file.
 #' @param col.names A character vector of column names immediately set on the output object.
@@ -29,17 +29,16 @@
 #'
 #' # Prepare example data ----
 #'
-#' n_bins <- 10
-#'
-#' se_list <- generateDeeptoolsExperiments(ranges=20, bins=n_bins, names=c("A"))
-#' se_A <- se_list[["A"]]
+#' se_list <- generateDeeptoolsExperiments(ranges=20, bins=10, names=c("A"))
+#' se_list
 #'
 #' # Write example file ----
 #'
+#' se_A <- se_list[["A"]]
 #' gr_A <- rowRanges(se_A)
 #' df_A <- data.frame(
 #'   seqnames(gr_A), start(gr_A), end(gr_A), names(gr_A), 0, strand(gr_A),
-#'   assay(se_A, "matrix"))
+#'   assay(se_A))
 #'
 #' # Write the sample data to file
 #' tf <- tempfile(fileext=".matrix.gz")
@@ -49,8 +48,7 @@
 #'
 #' # Usage ----
 #'
-#' bin_centers <- seq_len(n_bins) - n_bins/2
-#' importDeeptoolsExperiment(tf, col.names=bin_centers)
+#' importDeeptoolsExperiment(tf)
 importDeeptoolsExperiment <- function(file, col.names=NULL) {
     # Parse the file
     matrixFile <- gzfile(file)

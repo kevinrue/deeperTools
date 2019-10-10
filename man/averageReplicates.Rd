@@ -22,7 +22,10 @@ a new single \code{SummarizedExperiment} with the averaged assay.
 \examples{
 # Prepare example data ----
 
-se_list <- generateDeeptoolsExperiments(20, 10, head(LETTERS, 3))
+sample_names <- c("A", "B", "C")
+
+se_list <- generateDeeptoolsExperiments(20, 10, sample_names)
+se_list
 
 # Usage ----
 

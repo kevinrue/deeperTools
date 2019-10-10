@@ -32,9 +32,13 @@ theme_set(theme_cowplot())
 
 # Prepare example data ----
 
-se_list <- generateDeeptoolsExperiments(20, 10, head(LETTERS, 3))
+sample_names <- c("A", "B", "C")
+
+se_list <- generateDeeptoolsExperiments(20, 10, sample_names)
+se_list
 
 # Split each sample into gene subsets ----
+
 range_sets <- list(set1=c("GR_1"), set2=c("GR_2", "GR_3"))
 se_list_list <- lapply(se_list, splitByGeneSet, range_sets)
 
