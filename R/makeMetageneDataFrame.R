@@ -16,7 +16,7 @@
 #' @importFrom SummarizedExperiment assay
 #' @importFrom Matrix colMeans
 #'
-#' @seealso makeExperimentFromDeeptools
+#' @seealso importDeeptoolsExperiment
 #'
 #' @examples
 #' # Set the plotting environment ----

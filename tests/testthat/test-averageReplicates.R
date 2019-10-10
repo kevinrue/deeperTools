@@ -6,7 +6,7 @@ test_that("averageReplicates returns a valid object", {
     # Make a list of samples
     sampleNames <- head(LETTERS, 2)
     binCenters <- seq_len(nWindows) - nWindows/2
-    seList <- lapply(sampleNames, function(x){makeExperimentFromDeeptools(tf, col.names=binCenters)})
+    seList <- lapply(sampleNames, function(x){importDeeptoolsExperiment(tf, col.names=binCenters)})
     names(seList) <- sampleNames
 
     # Usage ----

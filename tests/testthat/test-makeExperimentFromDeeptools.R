@@ -1,10 +1,10 @@
 
-# makeExperimentFromDeeptools ----
+# importDeeptoolsExperiment ----
 
-test_that("makeExperimentFromDeeptools returns a valid object", {
+test_that("importDeeptoolsExperiment returns a valid object", {
 
     # Usage ----
-    out <- makeExperimentFromDeeptools(tf, col.names=binCenters)
+    out <- importDeeptoolsExperiment(tf, col.names=binCenters)
 
     expect_s4_class(out, "RangedSummarizedExperiment")
     expect_identical(unname(assay(out, "matrix")), mat)

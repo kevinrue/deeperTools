@@ -2,7 +2,7 @@
 
 export(averageReplicates)
 export(generateDeeptoolsExperiments)
-export(makeExperimentFromDeeptools)
+export(importDeeptoolsExperiment)
 export(makeMetageneDataFrame)
 export(splitByGeneSet)
 export(windowBreaks)
