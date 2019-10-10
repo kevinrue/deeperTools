@@ -1,3 +1,7 @@
+# deeperTools 0.0.5
+
+* Set `colnames` to `seq_len(ncol(se))` if `NULL`.
+
 # deeperTools 0.0.4
 
 * Rename `makeExperimentFromDeeptools()` to `importDeeptoolsExperiment()`.

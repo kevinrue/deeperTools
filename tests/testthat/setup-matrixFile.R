@@ -1,24 +1,21 @@
 # Prepare example data ----
 
-# Make sample genomic ranges
-nRanges <- 3
-gr <- GRanges(
-    seqnames=rep("chr1", nRanges),
-    ranges=IRanges(seq(1, nRanges), 10+seq(1, nRanges)))
-names(gr) <- letters[seq_len(nRanges)]
+N_RANGES <- 20
+N_BINS <- 10
+SAMPLE_NAMES <- c("A", "B")
 
-# Make a sample matrix
-nWindows <- 10
-mat <- matrix(data=rbinom(nRanges*nWindows, 10, 0.1), nrow=nRanges)
+se_list <- generateDeeptoolsExperiments(ranges=N_RANGES, bins=N_BINS, names=SAMPLE_NAMES)
 
-# Combine the two
-mcols(gr) <- mat
+# Write example file ----
+
+se_A <- se_list[["A"]]
+gr_A <- rowRanges(se_A)
+df_A <- data.frame(
+  seqnames(gr_A), start(gr_A), end(gr_A), names(gr_A), 0, strand(gr_A),
+  assay(se_A))
 
 # Write the sample data to file
 tf <- tempfile(fileext=".matrix.gz")
 conn <- gzfile(tf, "wt")
-outData <- data.frame(seqnames(gr), start(gr), end(gr), names(gr), 0, strand(gr), mcols(gr))
-write.table(outData, conn, row.names=FALSE, col.names=TRUE)
+write.table(df_A, conn, row.names=FALSE, col.names=TRUE)
 close(conn)
-
-binCenters <- seq_len(nWindows) - nWindows/2

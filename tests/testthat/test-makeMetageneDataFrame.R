@@ -4,13 +4,11 @@
 test_that("makeMetageneDataFrame returns a valid object", {
 
     # Make a list of samples
-    sampleNames <- head(LETTERS, 2)
-    binCenters <- seq_len(nWindows) - nWindows/2
-    seList <- lapply(sampleNames, function(x){importDeeptoolsExperiment(tf, col.names=binCenters)})
-    names(seList) <- sampleNames
+    seList <- lapply(SAMPLE_NAMES, function(x){ importDeeptoolsExperiment(tf) })
+    names(seList) <- SAMPLE_NAMES
 
     # Split each sample into gene subsets
-    genesets <- list(set1=c("a"), set2=c("b", "c"))
+    genesets <- list(set1=c("GR_1"), set2=c("GR_2", "GR_3"))
     seList <- lapply(seList, splitByGeneSet, genesets=genesets)
 
     # Usage ----

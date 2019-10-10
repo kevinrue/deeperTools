@@ -62,7 +62,10 @@ importDeeptoolsExperiment <- function(file, col.names=NULL) {
     se <- SummarizedExperiment(
         assays=list(matrix=scoreMatrix),
         rowRanges=rangeInfo)
-    # colnames are meaningless here
+    # colnames represent bin identifiers/position
+    if (is.null(col.names)) {
+        col.names <- seq_len(ncol(se))
+    }
     colnames(se) <- col.names
     se
 }

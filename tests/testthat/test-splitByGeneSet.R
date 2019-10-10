@@ -3,8 +3,8 @@
 
 test_that("splitByGeneSet returns a valid object", {
 
-    se <- importDeeptoolsExperiment(tf, col.names=binCenters)
-    genesets <- list(set1=c("a"), set2=c("b", "c"))
+    se <- importDeeptoolsExperiment(tf)
+    genesets <- list(set1=c("GR_1"), set2=c("GR_2", "GR_3"))
 
     # Usage ----
     out <- splitByGeneSet(se, genesets)
