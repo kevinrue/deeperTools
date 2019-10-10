@@ -7,21 +7,26 @@
 makeMetageneDataFrame(list, assay.type = "matrix")
 }
 \arguments{
-\item{list}{A named list of lists of \code{\link{SummarizedExperiment}} objects.
+\item{list}{A named list of lists of \link[SummarizedExperiment:SummarizedExperiment-class]{SummarizedExperiment} objects.
 Each item in the top-most list is a named sample (e.g. "replicate1").
 Each item within each sublist is a named gene set (e.g. "upregulated").
-Each \code{SummarizedExperiment} stores matrix of histone modification enrichment,
-with \code{colnames} set to the numerical value of the center of each window used to compute enrichment.}
+Each \link[SummarizedExperiment:SummarizedExperiment-class]{SummarizedExperiment} object stores matrix of histone modification enrichment,
+with \code{colnames} indicating the index or coordinate of bins used to compute enrichment.}
 
 \item{assay.type}{Name the assay to average between all samples.}
 }
 \value{
-A \code{data.frame} with columns \code{c("sample", "geneset", "position")}
+A \code{data.frame} with columns named:
+\itemize{
+\item "sample"
+\item "geneset"
+\item "position"
+}
 }
 \description{
 This function takes a list of data sets stratified by samples and gene sets.
 It computes the metagene for each gene set in each sample, and returns
-a \code{data.frame} suitable for \code{ggplot2}.
+a \code{data.frame} suitable for \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}}.
 }
 \examples{
 # Set the plotting environment ----

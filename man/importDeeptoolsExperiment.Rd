@@ -12,17 +12,15 @@ importDeeptoolsExperiment(file, col.names = NULL)
 \item{col.names}{A character vector of column names immediately set on the output object.}
 }
 \value{
-A \code{\linkS4class{SummarizedExperiment}} object. See \emph{Details}.
+A \link[SummarizedExperiment:SummarizedExperiment-class]{SummarizedExperiment} object.
+See \emph{Details}.
 }
 \description{
 Import a deepTools Matrix File as a SummarizedExperiment Object
 }
 \details{
-Matrix files produced by the \href{https://deeptools.readthedocs.io/en/develop/}{deepTools}
-do not include column names that are useful to indicate the genomic position relative to a reference point, for instance.
-While \code{colnames} could be manually set by users on the \code{SummarizedExperiment} returned,
-it can be convenient to provide a set of column names directly to the \code{importDeeptoolsExperiment} function,
-especially when importing multiple samples in an \code{\link{lapply}} statement, for instance.
+Matrix files produced by \href{https://deeptools.readthedocs.io/en/develop/}{deepTools} do not include column names that are useful to indicate the genomic position relative to a reference point, for instance.
+While \code{colnames} could be manually set by users on the \link[SummarizedExperiment:SummarizedExperiment-class]{SummarizedExperiment} returned, it can be convenient to provide a set of column names directly to the \code{\link[=importDeeptoolsExperiment]{importDeeptoolsExperiment()}} function, especially when importing multiple samples in an \code{\link[=lapply]{lapply()}} statement, for instance.
 
 The returned object contains:
 \itemize{

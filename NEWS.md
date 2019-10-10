@@ -1,3 +1,8 @@
+# deeperTools 0.0.6
+
+* Use Markdown in roxygen documentation.
+* Merge man pages for `windowCenters` and `windowBreaks`.
+
 # deeperTools 0.0.5
 
 * Set `colnames` to `seq_len(ncol(se))` if `NULL`.

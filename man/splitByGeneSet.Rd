@@ -7,12 +7,12 @@
 splitByGeneSet(se, genesets)
 }
 \arguments{
-\item{se}{A \code{\link{SummarizedExperiment}} object.}
+\item{se}{A \link[SummarizedExperiment:SummarizedExperiment-class]{SummarizedExperiment} object.}
 
 \item{genesets}{A list of gene sets.}
 }
 \value{
-A list of \code{\link{SummarizedExperiment}} objects.
+A list of \link[SummarizedExperiment:SummarizedExperiment-class]{SummarizedExperiment} objects.
 }
 \description{
 Extracts Gene Subsets from a SummarizedExperiment object
