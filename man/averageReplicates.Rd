@@ -7,17 +7,16 @@
 averageReplicates(list, assay.type = "matrix")
 }
 \arguments{
-\item{list}{A list of \code{\link{SummarizedExperiment}} objects.}
+\item{list}{A list of \link[SummarizedExperiment:SummarizedExperiment-class]{SummarizedExperiment} objects.}
 
 \item{assay.type}{Name the assay to average between all samples.}
 }
 \value{
-A \code{SummarizedExperiment} with the averaged assay.
+A \link[SummarizedExperiment:SummarizedExperiment-class]{SummarizedExperiment} object with the averaged assay.
 }
 \description{
-This function takes a list of \code{SummarizedExperiment} objects.
-It averages the requested assay between all input objects and returns
-a new single \code{SummarizedExperiment} with the averaged assay.
+This function takes a list of \link[SummarizedExperiment:SummarizedExperiment-class]{SummarizedExperiment} objects.
+It averages the requested assay between all input objects and returns a new single \link[SummarizedExperiment:SummarizedExperiment-class]{SummarizedExperiment} object with the averaged assay.
 }
 \examples{
 # Prepare example data ----

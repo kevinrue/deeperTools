@@ -5,7 +5,7 @@
 #' @param bins Number of bins (i.e., columns).
 #' @param names Character vector of sample names.
 #'
-#' @return A list of `SummarizedExperiment` objects.
+#' @return A list of [SummarizedExperiment][SummarizedExperiment::SummarizedExperiment-class] objects.
 #' @export
 #'
 #' @importFrom stats rbinom

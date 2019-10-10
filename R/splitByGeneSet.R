@@ -1,10 +1,10 @@
 
 #' Extracts Gene Subsets from a SummarizedExperiment object
 #'
-#' @param se A \code{\link{SummarizedExperiment}} object.
+#' @param se A [SummarizedExperiment][SummarizedExperiment::SummarizedExperiment-class] object.
 #' @param genesets A list of gene sets.
 #'
-#' @return A list of \code{\link{SummarizedExperiment}} objects.
+#' @return A list of [SummarizedExperiment][SummarizedExperiment::SummarizedExperiment-class] objects.
 #' @export
 #'
 #' @examples

@@ -1,13 +1,12 @@
 #' Average Assays Across Replicates
 #'
-#' This function takes a list of \code{SummarizedExperiment} objects.
-#' It averages the requested assay between all input objects and returns
-#' a new single \code{SummarizedExperiment} with the averaged assay.
+#' This function takes a list of [SummarizedExperiment][SummarizedExperiment::SummarizedExperiment-class] objects.
+#' It averages the requested assay between all input objects and returns a new single [SummarizedExperiment][SummarizedExperiment::SummarizedExperiment-class] object with the averaged assay.
 #'
-#' @param list A list of \code{\link{SummarizedExperiment}} objects.
+#' @param list A list of [SummarizedExperiment][SummarizedExperiment::SummarizedExperiment-class] objects.
 #' @param assay.type Name the assay to average between all samples.
 #'
-#' @return A \code{SummarizedExperiment} with the averaged assay.
+#' @return A [SummarizedExperiment][SummarizedExperiment::SummarizedExperiment-class] object with the averaged assay.
 #' @export
 #'
 #' @examples

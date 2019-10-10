@@ -2,16 +2,20 @@
 #'
 #' This function takes a list of data sets stratified by samples and gene sets.
 #' It computes the metagene for each gene set in each sample, and returns
-#' a \code{data.frame} suitable for \code{ggplot2}.
+#' a `data.frame` suitable for [ggplot2::ggplot()].
 #'
-#' @param list A named list of lists of \code{\link{SummarizedExperiment}} objects.
+#' @param list A named list of lists of [SummarizedExperiment][SummarizedExperiment::SummarizedExperiment-class] objects.
 #' Each item in the top-most list is a named sample (e.g. "replicate1").
 #' Each item within each sublist is a named gene set (e.g. "upregulated").
-#' Each \code{SummarizedExperiment} stores matrix of histone modification enrichment,
-#' with \code{colnames} set to the numerical value of the center of each window used to compute enrichment.
+#' Each [SummarizedExperiment][SummarizedExperiment::SummarizedExperiment-class] object stores matrix of histone modification enrichment,
+#' with `colnames` indicating the index or coordinate of bins used to compute enrichment.
 #' @param assay.type Name the assay to average between all samples.
 #'
-#' @return A \code{data.frame} with columns \code{c("sample", "geneset", "position")}
+#' @return A `data.frame` with columns named:
+#' * "sample"
+#' * "geneset"
+#' * "position"
+#'
 #' @export
 #' @importFrom SummarizedExperiment assay
 #' @importFrom Matrix colMeans

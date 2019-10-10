@@ -3,6 +3,8 @@
 #'
 #' Compute the centre of tiled windows over a range.
 #'
+#' @rdname windowBreaks
+#'
 #' @param from Start coordinate of the windows.
 #' @param to End coordinate of the windows.
 #' @param by Width of the windows.
@@ -27,11 +29,7 @@ windowCenters <- function(from, to, by) {
 #' Compute the breaks of tiled windows over a range.
 #' Identical to the base function \code{seq(from, to, by)}.
 #'
-#' @param from Start coordinate of the windows.
-#' @param to End coordinate of the windows.
-#' @param by Width of the windows.
-#'
-#' @return A numeric vector.
+#' @rdname windowBreaks
 #' @export
 #'
 #' @examples
