@@ -38,7 +38,7 @@
 <meta property="og:title" content="Compute Metagenes for Lists of Samples and Gene Sets — makeMetageneDataFrame" />
 <meta property="og:description" content="This function takes a list of data sets stratified by samples and gene sets.
 It computes the metagene for each gene set in each sample, and returns
-a data.frame suitable for ggplot2." />
+a data.frame suitable for ggplot2::ggplot()." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -71,7 +71,7 @@ a data.frame suitable for ggplot2." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">deeperTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.6</span>
       </span>
     </div>
 
@@ -118,7 +118,7 @@ a data.frame suitable for ggplot2." />
     <div class="ref-description">
     <p>This function takes a list of data sets stratified by samples and gene sets.
 It computes the metagene for each gene set in each sample, and returns
-a <code>data.frame</code> suitable for <code>ggplot2</code>.</p>
+a <code>data.frame</code> suitable for <code><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot2::ggplot()</a></code>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>makeMetageneDataFrame</span>(<span class='no'>list</span>, <span class='kw'>assay.type</span> <span class='kw'>=</span> <span class='st'>"matrix"</span>)</pre>
@@ -128,11 +128,11 @@ a <code>data.frame</code> suitable for <code>ggplot2</code>.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>list</th>
-      <td><p>A named list of lists of <code>SummarizedExperiment</code> objects.
+      <td><p>A named list of lists of <a href='https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html'>SummarizedExperiment</a> objects.
 Each item in the top-most list is a named sample (e.g. "replicate1").
 Each item within each sublist is a named gene set (e.g. "upregulated").
-Each <code>SummarizedExperiment</code> stores matrix of histone modification enrichment,
-with <code>colnames</code> set to the numerical value of the center of each window used to compute enrichment.</p></td>
+Each <a href='https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html'>SummarizedExperiment</a> object stores matrix of histone modification enrichment,
+with <code>colnames</code> indicating the index or coordinate of bins used to compute enrichment.</p></td>
     </tr>
     <tr>
       <th>assay.type</th>
@@ -142,7 +142,12 @@ with <code>colnames</code> set to the numerical value of the center of each wind
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A <code>data.frame</code> with columns <code><a href='https://rdrr.io/r/base/c.html'>c("sample", "geneset", "position")</a></code></p>
+    <p>A <code>data.frame</code> with columns named:</p><ul>
+<li><p>"sample"</p></li>
+<li><p>"geneset"</p></li>
+<li><p>"position"</p></li>
+</ul>
+
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>importDeeptoolsExperiment</p></div>

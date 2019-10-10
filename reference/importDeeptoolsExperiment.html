@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">deeperTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.6</span>
       </span>
     </div>
 
@@ -134,14 +134,12 @@
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A <code>SummarizedExperiment</code> object. See <em>Details</em>.</p>
+    <p>A <a href='https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html'>SummarizedExperiment</a> object.
+See <em>Details</em>.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Matrix files produced by the <a href='https://deeptools.readthedocs.io/en/develop/'>deepTools</a>
-do not include column names that are useful to indicate the genomic position relative to a reference point, for instance.
-While <code>colnames</code> could be manually set by users on the <code>SummarizedExperiment</code> returned,
-it can be convenient to provide a set of column names directly to the <code>importDeeptoolsExperiment</code> function,
-especially when importing multiple samples in an <code><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></code> statement, for instance.</p>
+    <p>Matrix files produced by <a href='https://deeptools.readthedocs.io/en/develop/'>deepTools</a> do not include column names that are useful to indicate the genomic position relative to a reference point, for instance.
+While <code>colnames</code> could be manually set by users on the <a href='https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html'>SummarizedExperiment</a> returned, it can be convenient to provide a set of column names directly to the <code>importDeeptoolsExperiment()</code> function, especially when importing multiple samples in an <code><a href='https://rdrr.io/r/base/lapply.html'>lapply()</a></code> statement, for instance.</p>
 <p>The returned object contains:</p><ul>
 <li><p>The deepTools matrix in the <code>assay</code> slot.</p></li>
 <li><p>The genomic range information in the <code>rowRanges</code> slot.</p></li>
