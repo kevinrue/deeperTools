@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Make a SummarizedExperiment object from a deepTools matrix — makeExperimentFromDeeptools • deeperTools</title>
+<title>Make a SummarizedExperiment Object from a deepTools Matrix File — makeExperimentFromDeeptools • deeperTools</title>
 
 
 <!-- jquery -->
@@ -35,8 +35,8 @@
 
 
 
-<meta property="og:title" content="Make a SummarizedExperiment object from a deepTools matrix — makeExperimentFromDeeptools" />
-<meta property="og:description" content="Make a SummarizedExperiment object from a deepTools matrix" />
+<meta property="og:title" content="Make a SummarizedExperiment Object from a deepTools Matrix File — makeExperimentFromDeeptools" />
+<meta property="og:description" content="Make a SummarizedExperiment Object from a deepTools Matrix File" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -108,13 +108,13 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Make a SummarizedExperiment object from a deepTools matrix</h1>
+    <h1>Make a SummarizedExperiment Object from a deepTools Matrix File</h1>
     <small class="dont-index">Source: <a href='https://github.com/kevinrue/deeperTools/blob/master/R/makeExperimentFromDeeptools.R'><code>R/makeExperimentFromDeeptools.R</code></a></small>
     <div class="hidden name"><code>makeExperimentFromDeeptools.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Make a SummarizedExperiment object from a deepTools matrix</p>
+    <p>Make a SummarizedExperiment Object from a deepTools Matrix File</p>
     </div>
 
     <pre class="usage"><span class='fu'>makeExperimentFromDeeptools</span>(<span class='no'>file</span>, <span class='kw'>col.names</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
@@ -154,36 +154,32 @@ especially when importing multiple samples in an <code><a href='https://rdrr.io/
 
 <span class='co'># Prepare example data ----</span>
 
-<span class='co'># Make sample genomic ranges</span>
-<span class='no'>nRanges</span> <span class='kw'>&lt;-</span> <span class='fl'>3</span>
-<span class='no'>gr</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/GenomicRanges/man/GRanges-class.html'>GRanges</a></span>(
-    <span class='kw'>seqnames</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='st'>"chr1"</span>, <span class='no'>nRanges</span>),
-    <span class='kw'>ranges</span><span class='kw'>=</span><span class='fu'>IRanges</span>(<span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>1</span>, <span class='no'>nRanges</span>), <span class='fl'>10</span>+<span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>1</span>, <span class='no'>nRanges</span>)))
-<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>gr</span>) <span class='kw'>&lt;-</span> <span class='no'>letters</span>[<span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq_len</a></span>(<span class='no'>nRanges</span>)]
+<span class='no'>n_bins</span> <span class='kw'>&lt;-</span> <span class='fl'>10</span>
 
-<span class='co'># Make a sample matrix</span>
-<span class='no'>nWindows</span> <span class='kw'>&lt;-</span> <span class='fl'>10</span>
-<span class='no'>mat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='kw'>data</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/stats/Binomial.html'>rbinom</a></span>(<span class='no'>nRanges</span>*<span class='no'>nWindows</span>, <span class='fl'>10</span>, <span class='fl'>0.1</span>), <span class='kw'>nrow</span><span class='kw'>=</span><span class='no'>nRanges</span>)
+<span class='no'>se_list</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='generateDeeptoolsExperiments.html'>generateDeeptoolsExperiments</a></span>(<span class='kw'>ranges</span><span class='kw'>=</span><span class='fl'>20</span>, <span class='kw'>bins</span><span class='kw'>=</span><span class='no'>n_bins</span>, <span class='kw'>names</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"A"</span>))
+<span class='no'>se_A</span> <span class='kw'>&lt;-</span> <span class='no'>se_list</span><span class='kw'>[[</span><span class='st'>"A"</span>]]
 
-<span class='co'># Combine the two</span>
-<span class='fu'>mcols</span>(<span class='no'>gr</span>) <span class='kw'>&lt;-</span> <span class='no'>mat</span>
+<span class='co'># Write example file ----</span>
+
+<span class='no'>gr_A</span> <span class='kw'>&lt;-</span> <span class='fu'>rowRanges</span>(<span class='no'>se_A</span>)
+<span class='no'>df_A</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
+  <span class='fu'>seqnames</span>(<span class='no'>gr_A</span>), <span class='fu'><a href='https://rdrr.io/r/stats/start.html'>start</a></span>(<span class='no'>gr_A</span>), <span class='fu'><a href='https://rdrr.io/r/stats/start.html'>end</a></span>(<span class='no'>gr_A</span>), <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>gr_A</span>), <span class='fl'>0</span>, <span class='fu'>strand</span>(<span class='no'>gr_A</span>),
+  <span class='fu'>assay</span>(<span class='no'>se_A</span>, <span class='st'>"matrix"</span>))
 
 <span class='co'># Write the sample data to file</span>
 <span class='no'>tf</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span>(<span class='kw'>fileext</span><span class='kw'>=</span><span class='st'>".matrix.gz"</span>)
 <span class='no'>conn</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/connections.html'>gzfile</a></span>(<span class='no'>tf</span>, <span class='st'>"wt"</span>)
-<span class='no'>outData</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='fu'>seqnames</span>(<span class='no'>gr</span>), <span class='fu'><a href='https://rdrr.io/r/stats/start.html'>start</a></span>(<span class='no'>gr</span>), <span class='fu'><a href='https://rdrr.io/r/stats/start.html'>end</a></span>(<span class='no'>gr</span>), <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>gr</span>), <span class='fl'>0</span>, <span class='fu'>strand</span>(<span class='no'>gr</span>), <span class='fu'>mcols</span>(<span class='no'>gr</span>))
-<span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.table</a></span>(<span class='no'>outData</span>, <span class='no'>conn</span>, <span class='kw'>row.names</span><span class='kw'>=</span><span class='fl'>FALSE</span>, <span class='kw'>col.names</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/write.table.html'>write.table</a></span>(<span class='no'>df_A</span>, <span class='no'>conn</span>, <span class='kw'>row.names</span><span class='kw'>=</span><span class='fl'>FALSE</span>, <span class='kw'>col.names</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/connections.html'>close</a></span>(<span class='no'>conn</span>)
 
 <span class='co'># Usage ----</span>
 
-<span class='no'>binCenters</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq_len</a></span>(<span class='no'>nWindows</span>) - <span class='no'>nWindows</span>/<span class='fl'>2</span>
-<span class='no'>se</span> <span class='kw'>&lt;-</span> <span class='fu'>makeExperimentFromDeeptools</span>(<span class='no'>tf</span>, <span class='kw'>col.names</span><span class='kw'>=</span><span class='no'>binCenters</span>)
-<span class='no'>se</span></div><div class='output co'>#&gt; class: RangedSummarizedExperiment 
-#&gt; dim: 3 10 
+<span class='no'>bin_centers</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq_len</a></span>(<span class='no'>n_bins</span>) - <span class='no'>n_bins</span>/<span class='fl'>2</span>
+<span class='fu'>makeExperimentFromDeeptools</span>(<span class='no'>tf</span>, <span class='kw'>col.names</span><span class='kw'>=</span><span class='no'>bin_centers</span>)</div><div class='output co'>#&gt; class: RangedSummarizedExperiment 
+#&gt; dim: 20 10 
 #&gt; metadata(0):
 #&gt; assays(1): matrix
-#&gt; rownames(3): a b c
+#&gt; rownames(20): GR_1 GR_2 ... GR_19 GR_20
 #&gt; rowData names(0):
 #&gt; colnames(10): -4 -3 ... 4 5
 #&gt; colData names(0):</div></pre>

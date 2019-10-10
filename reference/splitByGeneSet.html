@@ -139,67 +139,19 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Prepare example data ----</span>
 
-<span class='fu'><a href='https://rdrr.io/r/utils/example.html'>example</a></span>(<span class='no'>makeExperimentFromDeeptools</span>)</div><div class='output co'>#&gt; 
-#&gt; mkExFD&gt; library(rtracklayer)
-#&gt; 
-#&gt; mkExFD&gt; library(GenomicRanges)
-#&gt; 
-#&gt; mkExFD&gt; # Prepare example data ----
-#&gt; mkExFD&gt; 
-#&gt; mkExFD&gt; # Make sample genomic ranges
-#&gt; mkExFD&gt; nRanges &lt;- 3
-#&gt; 
-#&gt; mkExFD&gt; gr &lt;- GRanges(
-#&gt; mkExFD+     seqnames=rep("chr1", nRanges),
-#&gt; mkExFD+     ranges=IRanges(seq(1, nRanges), 10+seq(1, nRanges)))
-#&gt; 
-#&gt; mkExFD&gt; names(gr) &lt;- letters[seq_len(nRanges)]
-#&gt; 
-#&gt; mkExFD&gt; # Make a sample matrix
-#&gt; mkExFD&gt; nWindows &lt;- 10
-#&gt; 
-#&gt; mkExFD&gt; mat &lt;- matrix(data=rbinom(nRanges*nWindows, 10, 0.1), nrow=nRanges)
-#&gt; 
-#&gt; mkExFD&gt; # Combine the two
-#&gt; mkExFD&gt; mcols(gr) &lt;- mat
-#&gt; 
-#&gt; mkExFD&gt; # Write the sample data to file
-#&gt; mkExFD&gt; tf &lt;- tempfile(fileext=".matrix.gz")
-#&gt; 
-#&gt; mkExFD&gt; conn &lt;- gzfile(tf, "wt")
-#&gt; 
-#&gt; mkExFD&gt; outData &lt;- data.frame(seqnames(gr), start(gr), end(gr), names(gr), 0, strand(gr), mcols(gr))
-#&gt; 
-#&gt; mkExFD&gt; write.table(outData, conn, row.names=FALSE, col.names=TRUE)
-#&gt; 
-#&gt; mkExFD&gt; close(conn)
-#&gt; 
-#&gt; mkExFD&gt; # Usage ----
-#&gt; mkExFD&gt; 
-#&gt; mkExFD&gt; binCenters &lt;- seq_len(nWindows) - nWindows/2
-#&gt; 
-#&gt; mkExFD&gt; se &lt;- makeExperimentFromDeeptools(tf, col.names=binCenters)
-#&gt; 
-#&gt; mkExFD&gt; se
-#&gt; class: RangedSummarizedExperiment 
-#&gt; dim: 3 10 
-#&gt; metadata(0):
-#&gt; assays(1): matrix
-#&gt; rownames(3): a b c
-#&gt; rowData names(0):
-#&gt; colnames(10): -4 -3 ... 4 5
-#&gt; colData names(0):</div><div class='input'>
+<span class='no'>se_list</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='generateDeeptoolsExperiments.html'>generateDeeptoolsExperiments</a></span>(<span class='fl'>20</span>, <span class='fl'>10</span>, <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>LETTERS</span>, <span class='fl'>2</span>))
+
 <span class='co'># Usage ----</span>
 
-<span class='no'>genesets</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>set1</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"a"</span>), <span class='kw'>set2</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"b"</span>, <span class='st'>"c"</span>))
-<span class='fu'>splitByGeneSet</span>(<span class='no'>se</span>, <span class='no'>genesets</span>)</div><div class='output co'>#&gt; $set1
+<span class='no'>range_sets</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>set1</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"GR_1"</span>), <span class='kw'>set2</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"GR_2"</span>, <span class='st'>"GR_3"</span>))
+<span class='fu'>splitByGeneSet</span>(<span class='no'>se_list</span><span class='kw'>[[</span><span class='fl'>1</span>]], <span class='no'>range_sets</span>)</div><div class='output co'>#&gt; $set1
 #&gt; class: RangedSummarizedExperiment 
 #&gt; dim: 1 10 
 #&gt; metadata(0):
 #&gt; assays(1): matrix
-#&gt; rownames(1): a
+#&gt; rownames(1): GR_1
 #&gt; rowData names(0):
-#&gt; colnames(10): -4 -3 ... 4 5
+#&gt; colnames(10): 1 2 ... 9 10
 #&gt; colData names(0):
 #&gt; 
 #&gt; $set2
@@ -207,9 +159,9 @@
 #&gt; dim: 2 10 
 #&gt; metadata(0):
 #&gt; assays(1): matrix
-#&gt; rownames(2): b c
+#&gt; rownames(2): GR_2 GR_3
 #&gt; rowData names(0):
-#&gt; colnames(10): -4 -3 ... 4 5
+#&gt; colnames(10): 1 2 ... 9 10
 #&gt; colData names(0):
 #&gt; </div></pre>
   </div>

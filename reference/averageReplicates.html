@@ -142,86 +142,18 @@ a new single <code>SummarizedExperiment</code> with the averaged assay.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Prepare example data ----</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/example.html'>example</a></span>(<span class='no'>makeExperimentFromDeeptools</span>)</div><div class='output co'>#&gt; 
-#&gt; mkExFD&gt; library(rtracklayer)</div><div class='output co'>#&gt; <span class='message'>Loading required package: GenomicRanges</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: stats4</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: BiocGenerics</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: parallel</span></div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Attaching package: ‘BiocGenerics’</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:parallel’:</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    clusterApply, clusterApplyLB, clusterCall, clusterEvalQ,</span>
-#&gt; <span class='message'>    clusterExport, clusterMap, parApply, parCapply, parLapply,</span>
-#&gt; <span class='message'>    parLapplyLB, parRapply, parSapply, parSapplyLB</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:stats’:</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    IQR, mad, sd, var, xtabs</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:base’:</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    anyDuplicated, append, as.data.frame, basename, cbind, colnames,</span>
-#&gt; <span class='message'>    dirname, do.call, duplicated, eval, evalq, Filter, Find, get, grep,</span>
-#&gt; <span class='message'>    grepl, intersect, is.unsorted, lapply, Map, mapply, match, mget,</span>
-#&gt; <span class='message'>    order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank,</span>
-#&gt; <span class='message'>    rbind, Reduce, rownames, sapply, setdiff, sort, table, tapply,</span>
-#&gt; <span class='message'>    union, unique, unsplit, which, which.max, which.min</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: S4Vectors</span></div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Attaching package: ‘S4Vectors’</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from ‘package:base’:</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    expand.grid</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: IRanges</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: GenomeInfoDb</span></div><div class='output co'>#&gt; 
-#&gt; mkExFD&gt; library(GenomicRanges)
-#&gt; 
-#&gt; mkExFD&gt; # Prepare example data ----
-#&gt; mkExFD&gt; 
-#&gt; mkExFD&gt; # Make sample genomic ranges
-#&gt; mkExFD&gt; nRanges &lt;- 3
-#&gt; 
-#&gt; mkExFD&gt; gr &lt;- GRanges(
-#&gt; mkExFD+     seqnames=rep("chr1", nRanges),
-#&gt; mkExFD+     ranges=IRanges(seq(1, nRanges), 10+seq(1, nRanges)))
-#&gt; 
-#&gt; mkExFD&gt; names(gr) &lt;- letters[seq_len(nRanges)]
-#&gt; 
-#&gt; mkExFD&gt; # Make a sample matrix
-#&gt; mkExFD&gt; nWindows &lt;- 10
-#&gt; 
-#&gt; mkExFD&gt; mat &lt;- matrix(data=rbinom(nRanges*nWindows, 10, 0.1), nrow=nRanges)
-#&gt; 
-#&gt; mkExFD&gt; # Combine the two
-#&gt; mkExFD&gt; mcols(gr) &lt;- mat
-#&gt; 
-#&gt; mkExFD&gt; # Write the sample data to file
-#&gt; mkExFD&gt; tf &lt;- tempfile(fileext=".matrix.gz")
-#&gt; 
-#&gt; mkExFD&gt; conn &lt;- gzfile(tf, "wt")
-#&gt; 
-#&gt; mkExFD&gt; outData &lt;- data.frame(seqnames(gr), start(gr), end(gr), names(gr), 0, strand(gr), mcols(gr))
-#&gt; 
-#&gt; mkExFD&gt; write.table(outData, conn, row.names=FALSE, col.names=TRUE)
-#&gt; 
-#&gt; mkExFD&gt; close(conn)
-#&gt; 
-#&gt; mkExFD&gt; # Usage ----
-#&gt; mkExFD&gt; 
-#&gt; mkExFD&gt; binCenters &lt;- seq_len(nWindows) - nWindows/2
-#&gt; 
-#&gt; mkExFD&gt; se &lt;- makeExperimentFromDeeptools(tf, col.names=binCenters)
-#&gt; 
-#&gt; mkExFD&gt; se
-#&gt; class: RangedSummarizedExperiment 
-#&gt; dim: 3 10 
-#&gt; metadata(0):
-#&gt; assays(1): matrix
-#&gt; rownames(3): a b c
-#&gt; rowData names(0):
-#&gt; colnames(10): -4 -3 ... 4 5
-#&gt; colData names(0):</div><div class='input'>
-<span class='co'># Make a list of samples</span>
-<span class='no'>sampleNames</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>LETTERS</span>, <span class='fl'>2</span>)
-<span class='no'>binCenters</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq_len</a></span>(<span class='no'>nWindows</span>) - <span class='no'>nWindows</span>/<span class='fl'>2</span>
-<span class='no'>seList</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span>(<span class='no'>sampleNames</span>, <span class='kw'>function</span>(<span class='no'>x</span>){<span class='fu'><a href='makeExperimentFromDeeptools.html'>makeExperimentFromDeeptools</a></span>(<span class='no'>tf</span>, <span class='kw'>col.names</span><span class='kw'>=</span><span class='no'>binCenters</span>)})
-<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>seList</span>) <span class='kw'>&lt;-</span> <span class='no'>sampleNames</span>
+
+<span class='no'>se_list</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='generateDeeptoolsExperiments.html'>generateDeeptoolsExperiments</a></span>(<span class='fl'>20</span>, <span class='fl'>10</span>, <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>LETTERS</span>, <span class='fl'>3</span>))
 
 <span class='co'># Usage ----</span>
-<span class='fu'>averageReplicates</span>(<span class='no'>seList</span>)</div><div class='output co'>#&gt; class: RangedSummarizedExperiment 
-#&gt; dim: 3 10 
+
+<span class='fu'>averageReplicates</span>(<span class='no'>se_list</span>)</div><div class='output co'>#&gt; class: RangedSummarizedExperiment 
+#&gt; dim: 20 10 
 #&gt; metadata(0):
 #&gt; assays(1): matrix
-#&gt; rownames(3): a b c
+#&gt; rownames(20): GR_1 GR_2 ... GR_19 GR_20
 #&gt; rowData names(0):
-#&gt; colnames(10): -4 -3 ... 4 5
+#&gt; colnames(10): 1 2 ... 9 10
 #&gt; colData names(0):</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
