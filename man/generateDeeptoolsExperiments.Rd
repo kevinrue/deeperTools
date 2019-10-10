@@ -20,6 +20,10 @@ A list of `SummarizedExperiment` objects.
 Generate SummarizedExperiment Objects Representing deepTools Matrices
 }
 \examples{
-se_list <- generateDeeptoolsExperiments(20, 10, head(LETTERS, 3))
+# Usage ----
+
+sample_names <- c("A", "B", "C")
+
+se_list <- generateDeeptoolsExperiments(20, 10, sample_names)
 se_list
 }

@@ -20,7 +20,10 @@ Extracts Gene Subsets from a SummarizedExperiment object
 \examples{
 # Prepare example data ----
 
-se_list <- generateDeeptoolsExperiments(20, 10, head(LETTERS, 2))
+sample_names <- c("A", "B")
+
+se_list <- generateDeeptoolsExperiments(20, 10, sample_names)
+se_list
 
 # Usage ----
 

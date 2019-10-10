@@ -1,8 +1,8 @@
 Package: deeperTools
 Title: Downstream Processing of DeepTools Analyses
-Version: 0.0.3
+Version: 0.0.4
 Authors@R: person("Kevin", "Rue-Albrecht", email = "kevin.rue-albrecht@kenedy.ox.ac.uk", role = c("aut", "cre"))
-Description: Parses and visualizes file produced by the DeepTools program
+Description: Parses and visualizes file produced by the deepTools program
     (https://deeptools.readthedocs.io/en/develop/index.html).
 Depends: R (>= 3.5.0), SummarizedExperiment
 License: GPL-3 + file LICENSE
