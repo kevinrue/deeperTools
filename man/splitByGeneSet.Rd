@@ -20,10 +20,10 @@ Extracts Gene Subsets from a SummarizedExperiment object
 \examples{
 # Prepare example data ----
 
-example(makeExperimentFromDeeptools)
+se_list <- generateDeeptoolsExperiments(20, 10, head(LETTERS, 2))
 
 # Usage ----
 
-genesets <- list(set1=c("a"), set2=c("b", "c"))
-splitByGeneSet(se, genesets)
+range_sets <- list(set1=c("GR_1"), set2=c("GR_2", "GR_3"))
+splitByGeneSet(se_list[[1]], range_sets)
 }

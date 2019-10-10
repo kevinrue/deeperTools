@@ -1,4 +1,4 @@
-#' Make a SummarizedExperiment object from a deepTools matrix
+#' Make a SummarizedExperiment Object from a deepTools Matrix File
 #'
 #' @param file A gzip-compressed matrix file.
 #' @param col.names A character vector of column names immediately set on the output object.
@@ -29,32 +29,28 @@
 #'
 #' # Prepare example data ----
 #'
-#' # Make sample genomic ranges
-#' nRanges <- 3
-#' gr <- GRanges(
-#'     seqnames=rep("chr1", nRanges),
-#'     ranges=IRanges(seq(1, nRanges), 10+seq(1, nRanges)))
-#' names(gr) <- letters[seq_len(nRanges)]
+#' n_bins <- 10
 #'
-#' # Make a sample matrix
-#' nWindows <- 10
-#' mat <- matrix(data=rbinom(nRanges*nWindows, 10, 0.1), nrow=nRanges)
+#' se_list <- generateDeeptoolsExperiments(ranges=20, bins=n_bins, names=c("A"))
+#' se_A <- se_list[["A"]]
 #'
-#' # Combine the two
-#' mcols(gr) <- mat
+#' # Write example file ----
+#'
+#' gr_A <- rowRanges(se_A)
+#' df_A <- data.frame(
+#'   seqnames(gr_A), start(gr_A), end(gr_A), names(gr_A), 0, strand(gr_A),
+#'   assay(se_A, "matrix"))
 #'
 #' # Write the sample data to file
 #' tf <- tempfile(fileext=".matrix.gz")
 #' conn <- gzfile(tf, "wt")
-#' outData <- data.frame(seqnames(gr), start(gr), end(gr), names(gr), 0, strand(gr), mcols(gr))
-#' write.table(outData, conn, row.names=FALSE, col.names=TRUE)
+#' write.table(df_A, conn, row.names=FALSE, col.names=TRUE)
 #' close(conn)
 #'
 #' # Usage ----
 #'
-#' binCenters <- seq_len(nWindows) - nWindows/2
-#' se <- makeExperimentFromDeeptools(tf, col.names=binCenters)
-#' se
+#' bin_centers <- seq_len(n_bins) - n_bins/2
+#' makeExperimentFromDeeptools(tf, col.names=bin_centers)
 makeExperimentFromDeeptools <- function(file, col.names=NULL) {
     # Parse the file
     matrixFile <- gzfile(file)

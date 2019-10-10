@@ -21,14 +21,10 @@ a new single \code{SummarizedExperiment} with the averaged assay.
 }
 \examples{
 # Prepare example data ----
-example(makeExperimentFromDeeptools)
 
-# Make a list of samples
-sampleNames <- head(LETTERS, 2)
-binCenters <- seq_len(nWindows) - nWindows/2
-seList <- lapply(sampleNames, function(x){makeExperimentFromDeeptools(tf, col.names=binCenters)})
-names(seList) <- sampleNames
+se_list <- generateDeeptoolsExperiments(20, 10, head(LETTERS, 3))
 
 # Usage ----
-averageReplicates(seList)
+
+averageReplicates(se_list)
 }
