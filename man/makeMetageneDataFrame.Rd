@@ -48,5 +48,5 @@ ggplot(x, aes(position, metagene, color=geneset)) +
     facet_wrap(~sample, ncol=1)
 }
 \seealso{
-makeExperimentFromDeeptools
+importDeeptoolsExperiment
 }

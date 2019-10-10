@@ -7,7 +7,7 @@
 #' Matrix files produced by the \href{https://deeptools.readthedocs.io/en/develop/}{deepTools}
 #' do not include column names that are useful to indicate the genomic position relative to a reference point, for instance.
 #' While \code{colnames} could be manually set by users on the \code{SummarizedExperiment} returned,
-#' it can be convenient to provide a set of column names directly to the \code{makeExperimentFromDeeptools} function,
+#' it can be convenient to provide a set of column names directly to the \code{importDeeptoolsExperiment} function,
 #' especially when importing multiple samples in an \code{\link{lapply}} statement, for instance.
 #'
 #' @return A \code{\linkS4class{SummarizedExperiment}} object. See \emph{Details}.
@@ -50,8 +50,8 @@
 #' # Usage ----
 #'
 #' bin_centers <- seq_len(n_bins) - n_bins/2
-#' makeExperimentFromDeeptools(tf, col.names=bin_centers)
-makeExperimentFromDeeptools <- function(file, col.names=NULL) {
+#' importDeeptoolsExperiment(tf, col.names=bin_centers)
+importDeeptoolsExperiment <- function(file, col.names=NULL) {
     # Parse the file
     matrixFile <- gzfile(file)
     matrixData <- read.table(matrixFile, skip=1)
