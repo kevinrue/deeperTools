@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Make a SummarizedExperiment Object from a deepTools Matrix File — importDeeptoolsExperiment • deeperTools</title>
+<title>Import a deepTools Matrix File as a SummarizedExperiment Object — importDeeptoolsExperiment • deeperTools</title>
 
 
 <!-- jquery -->
@@ -35,8 +35,8 @@
 
 
 
-<meta property="og:title" content="Make a SummarizedExperiment Object from a deepTools Matrix File — importDeeptoolsExperiment" />
-<meta property="og:description" content="Make a SummarizedExperiment Object from a deepTools Matrix File" />
+<meta property="og:title" content="Import a deepTools Matrix File as a SummarizedExperiment Object — importDeeptoolsExperiment" />
+<meta property="og:description" content="Import a deepTools Matrix File as a SummarizedExperiment Object" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">deeperTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.4</span>
       </span>
     </div>
 
@@ -108,13 +108,13 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Make a SummarizedExperiment Object from a deepTools Matrix File</h1>
-    <small class="dont-index">Source: <a href='https://github.com/kevinrue/deeperTools/blob/master/R/makeExperimentFromDeeptools.R'><code>R/makeExperimentFromDeeptools.R</code></a></small>
+    <h1>Import a deepTools Matrix File as a SummarizedExperiment Object</h1>
+    <small class="dont-index">Source: <a href='https://github.com/kevinrue/deeperTools/blob/master/R/importDeeptoolsExperiment.R'><code>R/importDeeptoolsExperiment.R</code></a></small>
     <div class="hidden name"><code>importDeeptoolsExperiment.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Make a SummarizedExperiment Object from a deepTools Matrix File</p>
+    <p>Import a deepTools Matrix File as a SummarizedExperiment Object</p>
     </div>
 
     <pre class="usage"><span class='fu'>importDeeptoolsExperiment</span>(<span class='no'>file</span>, <span class='kw'>col.names</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
@@ -154,17 +154,24 @@ especially when importing multiple samples in an <code><a href='https://rdrr.io/
 
 <span class='co'># Prepare example data ----</span>
 
-<span class='no'>n_bins</span> <span class='kw'>&lt;-</span> <span class='fl'>10</span>
-
-<span class='no'>se_list</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='generateDeeptoolsExperiments.html'>generateDeeptoolsExperiments</a></span>(<span class='kw'>ranges</span><span class='kw'>=</span><span class='fl'>20</span>, <span class='kw'>bins</span><span class='kw'>=</span><span class='no'>n_bins</span>, <span class='kw'>names</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"A"</span>))
-<span class='no'>se_A</span> <span class='kw'>&lt;-</span> <span class='no'>se_list</span><span class='kw'>[[</span><span class='st'>"A"</span>]]
-
+<span class='no'>se_list</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='generateDeeptoolsExperiments.html'>generateDeeptoolsExperiments</a></span>(<span class='kw'>ranges</span><span class='kw'>=</span><span class='fl'>20</span>, <span class='kw'>bins</span><span class='kw'>=</span><span class='fl'>10</span>, <span class='kw'>names</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"A"</span>))
+<span class='no'>se_list</span></div><div class='output co'>#&gt; $A
+#&gt; class: RangedSummarizedExperiment 
+#&gt; dim: 20 10 
+#&gt; metadata(0):
+#&gt; assays(1): matrix
+#&gt; rownames(20): GR_1 GR_2 ... GR_19 GR_20
+#&gt; rowData names(0):
+#&gt; colnames(10): 1 2 ... 9 10
+#&gt; colData names(0):
+#&gt; </div><div class='input'>
 <span class='co'># Write example file ----</span>
 
+<span class='no'>se_A</span> <span class='kw'>&lt;-</span> <span class='no'>se_list</span><span class='kw'>[[</span><span class='st'>"A"</span>]]
 <span class='no'>gr_A</span> <span class='kw'>&lt;-</span> <span class='fu'>rowRanges</span>(<span class='no'>se_A</span>)
 <span class='no'>df_A</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
   <span class='fu'>seqnames</span>(<span class='no'>gr_A</span>), <span class='fu'><a href='https://rdrr.io/r/stats/start.html'>start</a></span>(<span class='no'>gr_A</span>), <span class='fu'><a href='https://rdrr.io/r/stats/start.html'>end</a></span>(<span class='no'>gr_A</span>), <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>gr_A</span>), <span class='fl'>0</span>, <span class='fu'>strand</span>(<span class='no'>gr_A</span>),
-  <span class='fu'>assay</span>(<span class='no'>se_A</span>, <span class='st'>"matrix"</span>))
+  <span class='fu'>assay</span>(<span class='no'>se_A</span>))
 
 <span class='co'># Write the sample data to file</span>
 <span class='no'>tf</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span>(<span class='kw'>fileext</span><span class='kw'>=</span><span class='st'>".matrix.gz"</span>)
@@ -174,14 +181,13 @@ especially when importing multiple samples in an <code><a href='https://rdrr.io/
 
 <span class='co'># Usage ----</span>
 
-<span class='no'>bin_centers</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq_len</a></span>(<span class='no'>n_bins</span>) - <span class='no'>n_bins</span>/<span class='fl'>2</span>
-<span class='fu'>importDeeptoolsExperiment</span>(<span class='no'>tf</span>, <span class='kw'>col.names</span><span class='kw'>=</span><span class='no'>bin_centers</span>)</div><div class='output co'>#&gt; class: RangedSummarizedExperiment 
+<span class='fu'>importDeeptoolsExperiment</span>(<span class='no'>tf</span>)</div><div class='output co'>#&gt; class: RangedSummarizedExperiment 
 #&gt; dim: 20 10 
 #&gt; metadata(0):
 #&gt; assays(1): matrix
 #&gt; rownames(20): GR_1 GR_2 ... GR_19 GR_20
 #&gt; rowData names(0):
-#&gt; colnames(10): -4 -3 ... 4 5
+#&gt; colnames: NULL
 #&gt; colData names(0):</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

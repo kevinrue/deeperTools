@@ -71,7 +71,7 @@ a data.frame suitable for ggplot2." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">deeperTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.4</span>
       </span>
     </div>
 
@@ -157,9 +157,41 @@ with <code>colnames</code> set to the numerical value of the center of each wind
 
 <span class='co'># Prepare example data ----</span>
 
-<span class='no'>se_list</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='generateDeeptoolsExperiments.html'>generateDeeptoolsExperiments</a></span>(<span class='fl'>20</span>, <span class='fl'>10</span>, <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>LETTERS</span>, <span class='fl'>3</span>))
+<span class='no'>sample_names</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"A"</span>, <span class='st'>"B"</span>, <span class='st'>"C"</span>)
 
+<span class='no'>se_list</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='generateDeeptoolsExperiments.html'>generateDeeptoolsExperiments</a></span>(<span class='fl'>20</span>, <span class='fl'>10</span>, <span class='no'>sample_names</span>)
+<span class='no'>se_list</span></div><div class='output co'>#&gt; $A
+#&gt; class: RangedSummarizedExperiment 
+#&gt; dim: 20 10 
+#&gt; metadata(0):
+#&gt; assays(1): matrix
+#&gt; rownames(20): GR_1 GR_2 ... GR_19 GR_20
+#&gt; rowData names(0):
+#&gt; colnames(10): 1 2 ... 9 10
+#&gt; colData names(0):
+#&gt; 
+#&gt; $B
+#&gt; class: RangedSummarizedExperiment 
+#&gt; dim: 20 10 
+#&gt; metadata(0):
+#&gt; assays(1): matrix
+#&gt; rownames(20): GR_1 GR_2 ... GR_19 GR_20
+#&gt; rowData names(0):
+#&gt; colnames(10): 1 2 ... 9 10
+#&gt; colData names(0):
+#&gt; 
+#&gt; $C
+#&gt; class: RangedSummarizedExperiment 
+#&gt; dim: 20 10 
+#&gt; metadata(0):
+#&gt; assays(1): matrix
+#&gt; rownames(20): GR_1 GR_2 ... GR_19 GR_20
+#&gt; rowData names(0):
+#&gt; colnames(10): 1 2 ... 9 10
+#&gt; colData names(0):
+#&gt; </div><div class='input'>
 <span class='co'># Split each sample into gene subsets ----</span>
+
 <span class='no'>range_sets</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>set1</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"GR_1"</span>), <span class='kw'>set2</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"GR_2"</span>, <span class='st'>"GR_3"</span>))
 <span class='no'>se_list_list</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span>(<span class='no'>se_list</span>, <span class='no'>splitByGeneSet</span>, <span class='no'>range_sets</span>)
 
