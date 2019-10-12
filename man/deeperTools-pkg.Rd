@@ -5,9 +5,9 @@
 \alias{deeperTools}
 \alias{deeperTools-package}
 \alias{deeperTools-pkg-package}
-\title{iSEE: interactive SummarizedExperiment/SingleCellExperiment Explorer}
+\title{deeperTools: Downstream Analysis for deepTools}
 \description{
-\code{deeperTools} is a package that provides convenience functions to process files produced by deepTools.
+\code{deeperTools} is a package that provides convenience functions to process files produced by deepTools \url{https://deeptools.readthedocs.io/en/develop}.
 }
 \seealso{
 Useful links:

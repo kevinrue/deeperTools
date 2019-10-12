@@ -1,6 +1,6 @@
-#' iSEE: interactive SummarizedExperiment/SingleCellExperiment Explorer
+#' deeperTools: Downstream Analysis for deepTools
 #'
-#' \code{deeperTools} is a package that provides convenience functions to process files produced by deepTools.
+#' \code{deeperTools} is a package that provides convenience functions to process files produced by deepTools <https://deeptools.readthedocs.io/en/develop>.
 #'
 #' @import SummarizedExperiment
 #' @author Kevin Rue-Albrecht \email{kevin.rue-albrecht@@kennedy.ox.ac.uk}
