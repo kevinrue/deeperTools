@@ -18,4 +18,3 @@ r_check_args: "--no-build-vignettes --no-manual --timings"
 r_packages:
   - remotes
   - BiocManager
-
