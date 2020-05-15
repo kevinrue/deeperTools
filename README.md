@@ -1,6 +1,9 @@
+<!-- badges: start -->
+[![DOI](https://zenodo.org/badge/162707083.svg)](https://zenodo.org/badge/latestdoi/162707083)
 [![Travis build status](https://travis-ci.org/kevinrue/deeperTools.svg?branch=master)](https://travis-ci.org/kevinrue/deeperTools)
 [![Coverage status](https://codecov.io/gh/kevinrue/deeperTools/branch/master/graph/badge.svg)](https://codecov.io/github/kevinrue/deeperTools?branch=master)
-[![DOI](https://zenodo.org/badge/162707083.svg)](https://zenodo.org/badge/latestdoi/162707083)
+[![R build status](https://github.com/kevinrue/deeperTools/workflows/R-CMD-check/badge.svg)](https://github.com/kevinrue/deeperTools/actions)
+<!-- badges: end -->
 
 # deeperTools
 
